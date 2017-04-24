@@ -1,0 +1,162 @@
+<!-- Odkaz na github: https://github.com/janjirousekk/app -->
+
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    
+    <xs:element name="app"> <!-- Koøenový element --> 
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="user" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:complexType name="user"> <!-- Obal pro uživatele --> 
+        <xs:sequence>
+            <xs:element ref="account" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="config" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="progress" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:string" />
+    </xs:complexType>
+    
+    <xs:element name="account"> <!-- Obal pro personální informace --> 
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="nick" type="xs:string"/>
+                <xs:element name="email" type="xs:string"/>
+                <xs:element name="password">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute type="xs:string" name="type"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="created" type="xs:date" />
+                <xs:element name="last_login" type="xs:string" />
+                <xs:element name="premium">
+                    <xs:complexType>
+                        <xs:attribute name="active" type="xs:boolean"></xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="premium_fromDate" type="xs:string" />
+                <xs:element name="premium_toDate" type="xs:string" />
+                <xs:element name="friends">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="friend" maxOccurs="unbounded" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute type="xs:string" name="id"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>    
+    </xs:element>
+    
+    <xs:element name="config"> <!-- Grafické nastavení aplikace --> 
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="predefined" type="xs:string"/>
+                <xs:element name="resolution" type="xs:string"/>
+                <xs:element name="directx" type="xs:string"/>
+                <xs:element name="vsync">
+                    <xs:complexType>
+                        <xs:attribute name="enable" type="xs:boolean"></xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="low_pc">
+                    <xs:complexType>
+                        <xs:attribute name="enable" type="xs:boolean"></xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="antialiasing" type="xs:string"/>
+                <xs:element name="texture_quality" type="xs:string"/>
+                <xs:element name="texture_filtering" type="xs:string"/>
+                <xs:element name="light_guality" type="xs:string"/>
+                <xs:element name="liquid" type="xs:string"/>
+                <xs:element name="depth_of_field" type="xs:string"/>
+                <xs:element name="shadows" type="xs:string"/>
+                <xs:element name="range_render" type="xs:string"/>
+                <xs:element name="range_shadows" type="xs:string"/>
+                <xs:element name="range_objects" type="xs:string"/>
+                <xs:element name="bloom" type="xs:integer"/>
+                <xs:element name="motion_blur" type="xs:string"/>
+                <xs:element name="fps">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute type="xs:integer" name="max_fps"/>
+                                <xs:attribute type="xs:integer" name="max_bg_fps"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="new_models">
+                    <xs:complexType>
+                        <xs:attribute name="allow" type="xs:boolean"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="key_binding"> <!-- Natavení kláves --> 
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="key" maxOccurs="unbounded" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute type="xs:string" name="value"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType> 
+    </xs:element>
+    
+    <xs:element name="progress"> <!-- Obal pro seznam postav uživatele --> 
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="character" maxOccurs="unbounded" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="name"/>
+                            <xs:element type="xs:string" name="server"/>
+                            <xs:element type="xs:string" name="realm"/>
+                            <xs:element type="xs:integer" name="level"/>
+                            <xs:element type="xs:string" name="race"/>
+                            <xs:element type="xs:string" name="class"/>
+                            <xs:element type="xs:string" name="specialization"/>
+                            <xs:element type="xs:integer" name="item_lvl"/>
+                            <xs:element type="xs:integer" name="rank_realm_pvp"/>
+                            <xs:element type="xs:integer" name="rank_realm_pve"/>
+                            <xs:element type="xs:integer" name="rank_global_pvp"/>
+                            <xs:element type="xs:integer" name="rank_global_pve"/>
+                            <xs:element name="location">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute type="xs:byte" name="posX"/>
+                                            <xs:attribute type="xs:byte" name="posY"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+  </xs:element>
+
+</xs:schema>

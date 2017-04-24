@@ -1,0 +1,458 @@
+<!-- Odkaz na github: https://github.com/janjirousekk/app -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <meta name="Author" content="Jan Jiroušek">
+        <title>Dokumentace - Nastavení hry</title>     
+    </head>
+    <body>
+    <div class="container">
+    <nav>
+      <h3>Navigace:</h3>
+      <ul>
+        <li><a href="#uvod">Úvod</a></li>
+        <li><a href="#metodika">Metodika - Použité nástroje</a></li>
+        <li><a href="#popis">Popis elementů a atributů</a></li>
+        <li><a href="#transformace">Popis transformace</a></li>
+        <li><a href="#zaver">Závěr</a></li>
+      </ul>
+      <hr />
+    </nav>
+    <main>
+      <section id="uvod">
+        <article>
+          <header>
+            <h2>Úvod</h2>
+          </header>          
+          <p>
+          Jako téma semestrálního projektu jsem si vybral fiktivní config hry včetně herních informací o hráčích.
+          Počítačové hry jsou v dnešní době velice oblíbené a věřím, že nastavení nějaké offline hry, by mohlo vypadat podobně.
+          </p>
+          <p>XML soubor slouží k obecné konfiguraci webové aplikace, ke konfiguraci práv jednotlivých uživatelů, a konfiguraci jednotlivých sekcí EKnihovny.</p> 
+        </article>
+      </section>
+      <section id="metodika">
+        <article>
+          <header>
+            <h2>Metodika</h2>
+          </header>
+          <h3>Využité programy</h3>
+          <p>
+              Pro tvorbu tohoto projektu jsem použil programy <a href="https://netbeans.org/">Netbeans</a> 
+                a prohlížeč <a href="https://www.google.com/chrome/">Google Chrome</a>.    
+          </p>
+          <h3>Validace</h3>
+          <p>
+            Pro validaci dokumentů jsou použil vestavěný nástroj v programu Netbeans.
+          </p>        
+        </article>
+      </section>
+      <section id="popis" >
+        <article>
+          <header>
+            <h2>Popis elementů a atributů</h2>
+          </header>
+          <h3>Použité elementy</h3>
+          <table border="1" id="elementy" title="Tabulka elementů">
+            <tr>
+                <th>Název elementu</th>
+                <th>Popis</th>
+                <th>Datový typ</th>
+                <th>Nadřezený element</th>
+            </tr>
+            <tr>                       
+                <td>user</td>
+                <td>Complex type</td>
+                <td>Obalový element pro strukturu uživatele</td>
+                <td>app</td>
+            </tr>    
+            <tr>                       
+                <td>account</td>
+                <td>Complex type</td>
+                <td>Obalový element pro personální informace o uživateli</td>
+                <td>user</td>
+            </tr> 
+            <tr>                       
+                <td>nick</td>
+                <td>String</td>
+                <td>Přezdívka uživatele</td>
+                <td>account</td>
+            </tr> 
+            <tr>                       
+                <td>email</td>
+                <td>String</td>
+                <td>Email uživatele</td>
+                <td>account</td>
+            </tr> 
+            <tr>                       
+                <td>password</td>
+                <td>String</td>
+                <td>Obsahuje pomocí MD5 zašifrované heslo uživatele</td>
+                <td>account</td>
+            </tr> 
+            <tr>                       
+                <td>created</td>
+                <td>Date</td>
+                <td>Datum vytvoření účtu</td>
+                <td>account</td>
+            </tr> 
+            <tr>                       
+                <td>last_login</td>
+                <td>Date</td>
+                <td>Datum posledního přihlášení</td>
+                <td>account</td>
+            </tr> 
+            <tr>                       
+                <td>premium</td>
+                <td>Complext type</td>
+                <td>Obsahuje Boolean attribut, který označuje aktivní prémiový účet</td>
+                <td>account</td>
+            </tr> 
+            <tr>                       
+                <td>premium_fromDate</td>
+                <td>Date</td>
+                <td>Datum od kdy je aktivní prémiový účet</td>
+                <td>account</td>
+            </tr> 
+            <tr>                       
+                <td>premium_toDate</td>
+                <td>Date</td>
+                <td>Datum do kdy je aktivní prémiový účet</td>
+                <td>account</td>
+            </tr>
+            <tr>                       
+                <td>friends</td>
+                <td>Complex type</td>
+                <td>Obal pro elementy přátel</td>
+                <td>account</td>
+            </tr>
+            <tr>                       
+                <td>friend</td>
+                <td>Complex type</td>
+                <td>Obsahuje attribut id spřáteléno hráče</td>
+                <td>friends</td>
+            </tr>
+            <tr>                       
+                <td>config</td>
+                <td>Complex type</td>
+                <td>Obal pro grafické nastavení uživatele</td>
+                <td>user</td>
+            </tr>
+            <tr>                       
+                <td>predefined</td>
+                <td>String</td>
+                <td>Přednastavené možnosti nastavení</td>
+                <td>config</td>
+            </tr>
+            <tr>                       
+                <td>resolution</td>
+                <td>String</td>
+                <td>Nastavení rozlišení</td>
+                <td>config</td>
+            </tr>
+            <tr>                       
+                <td>directx</td>
+                <td>String</td>
+                <td>Nastavení verze directx</td>
+                <td>config</td>
+            </tr>
+            <tr>                       
+                <td>vsync</td>
+                <td>Complex type</td>
+                <td>Obsahuje Boolean attribut, který povoluje vertikální synchronizaci</td>
+                <td>config</td>
+            </tr>
+            <tr>                       
+                <td>low_pc</td>
+                <td>Complex type</td>
+                <td>Obsahuje Boolean attribut, který povoluje nastavení pro méně výkonná pc</td>
+                <td>config</td>
+            </tr>
+            <tr>                       
+                <td>antialising</td>
+                <td>String</td>
+                <td>Nastavení vyhlazování</td>
+                <td>config</td>
+            </tr>
+            <tr>                       
+                <td>texture_quality</td>
+                <td>String</td>
+                <td>Nastavení kvality textur</td>
+                <td>config</td>
+            </tr>
+            <tr>                       
+                <td>texture_filtering</td>
+                <td>String</td>
+                <td>Nastavení filtrování textur</td>
+                <td>config</td>
+            </tr>
+            <tr>                       
+                <td>light_quality</td>
+                <td>String</td>
+                <td>Nastavení kvality světel</td>
+                <td>config</td>
+            </tr>
+            <tr>                       
+                <td>liquid</td>
+                <td>String</td>
+                <td>Nastavení kvality textur</td>
+                <td>config</td>
+            </tr>
+            <tr>                       
+                <td>depth-of-field</td>
+                <td>String</td>
+                <td>Nastavení hloubky pole</td>
+                <td>config</td>
+            </tr>
+            <tr>                       
+                <td>shadows</td>
+                <td>String</td>
+                <td>Nastavení kvality stínů</td>
+                <td>config</td>
+            </tr>
+            <tr>                       
+                <td>range_render</td>
+                <td>String</td>
+                <td>Nastavení vzdálenosti vykreslování</td>
+                <td>config</td>
+            </tr>
+            <tr>                       
+                <td>range_shadows</td>
+                <td>String</td>
+                <td>Nastavení vzdálenosti vykreslování stínů</td>
+                <td>config</td>
+            </tr>
+            <tr>                       
+                <td>range_objects</td>
+                <td>String</td>
+                <td>Nastavení vzdálenosti vykreslování objektů</td>
+                <td>config</td>
+            </tr>
+            <tr>                       
+                <td>bloom</td>
+                <td>Integer</td>
+                <td>Nastavení rozostření</td>
+                <td>config</td>
+            </tr>
+            <tr>                       
+                <td>motion_bloom</td>
+                <td>Integer</td>
+                <td>Nastavení pohybového rozostření</td>
+                <td>config</td>
+            </tr>
+            <tr>                       
+                <td>fps</td>
+                <td>Complex type</td>
+                <td>Obsahuje attribut pro maximální fps a fps na pozadí</td>
+                <td>config</td>
+            </tr>
+            <tr>                       
+                <td>new_models</td>
+                <td>Complex type</td>
+                <td>Obsahuje attribut pro povolení použití nových modelů</td>
+                <td>config</td>
+            </tr>
+            <tr>                       
+                <td>key_binding</td>
+                <td>Complex type</td>
+                <td>Obsahuje elementy, které nastavují klávesy</td>
+                <td>config</td>
+            </tr>
+            <tr>                       
+                <td>key</td>
+                <td>String</td>
+                <td>Nastavení klávesy</td>
+                <td>key_binding</td>
+            </tr>
+            <tr>                       
+                <td>progress</td>
+                <td>Complex type</td>
+                <td>Obal pro postavy uživatele</td>
+                <td>user</td>
+            </tr>
+            <tr>                       
+                <td>character</td>
+                <td>Complex type</td>
+                <td>Obal pro informace o postavě</td>
+                <td>progress</td>
+            </tr>
+            <tr>                       
+                <td>name</td>
+                <td>String</td>
+                <td>Jméno postavy</td>
+                <td>character</td>
+            </tr>
+            <tr>                       
+                <td>server</td>
+                <td>String</td>
+                <td>Vybraný herní server</td>
+                <td>character</td>
+            </tr>
+            <tr>                       
+                <td>realm</td>
+                <td>String</td>
+                <td>Vybraná herní zóna na serveru</td>
+                <td>character</td>
+            </tr>
+            <tr>                       
+                <td>level</td>
+                <td>Integer</td>
+                <td>Level postavy</td>
+                <td>character</td>
+            </tr>
+            <tr>                       
+                <td>race</td>
+                <td>String</td>
+                <td>Rasa postavy</td>
+                <td>character</td>
+            </tr>
+            <tr>                       
+                <td>class</td>
+                <td>String</td>
+                <td>Třída postavy</td>
+                <td>character</td>
+            </tr>
+            <tr>                       
+                <td>specialization</td>
+                <td>String</td>
+                <td>Specializace třídy</td>
+                <td>character</td>
+            </tr>
+            <tr>                       
+                <td>item_lvl</td>
+                <td>Integer</td>
+                <td>Level vybavení postavy</td>
+                <td>character</td>
+            </tr>
+            <tr>                       
+                <td>rank_realm_pvp</td>
+                <td>Integer</td>
+                <td>Oblastní pvp rank postavy</td>
+                <td>character</td>
+            </tr>
+            <tr>                       
+                <td>rank_realm_pve</td>
+                <td>Integer</td>
+                <td>Oblastní pve rank postavy</td>
+                <td>character</td>
+            </tr>
+            <tr>                       
+                <td>rank_global_pvp</td>
+                <td>Integer</td>
+                <td>Globální pvp rank postavy</td>
+                <td>character</td>
+            </tr>
+            <tr>                       
+                <td>rank_global_pve</td>
+                <td>Integer</td>
+                <td>Globální pve rank postavy</td>
+                <td>character</td>
+            </tr>
+            <tr>                       
+                <td>location</td>
+                <td>Complex type</td>
+                <td>Obsahuje attributy pozice postavy na mapě</td>
+                <td>character</td>
+            </tr>
+          </table>
+          <br>
+            <h3>Použité attributy</h3>
+            <table border="1" id="attributy" title="Tabulka attributů">
+                <tr>
+                    <th>Název attributu</th>
+                    <th>Popis</th>
+                    <th>Element</th>
+                </tr>
+                <tr>                       
+                    <td>id</td>
+                    <td>ID uživatele</td>
+                    <td>user</td>
+                </tr>
+                <tr>                       
+                    <td>type</td>
+                    <td>Typ použitého šifrování hesla</td>
+                    <td>password</td>
+                </tr>
+                <tr>                       
+                    <td>active</td>
+                    <td>Boolean hodnota, která určuje aktivné prémiový účet</td>
+                    <td>premium</td>
+                </tr>
+                <tr>                       
+                    <td>enable</td>
+                    <td>Povoluje nastavení elementu</td>
+                    <td>vsync, low_pc</td>
+                </tr>
+                <tr>                       
+                    <td>max_fps</td>
+                    <td>Nastavení maximálního fps</td>
+                    <td>fps</td>
+                </tr>
+                <tr>                       
+                    <td>max_bg_fps</td>
+                    <td>Nastavení maximálního fps na pozadí</td>
+                    <td>fps</td>
+                </tr>
+                <tr>                       
+                    <td>allow</td>
+                    <td>Boolean hodnota povolení nových modelů</td>
+                    <td>new_models</td>
+                </tr>
+                <tr>                       
+                    <td>value</td>
+                    <td>Udavá klávesu</td>
+                    <td>key</td>
+                </tr>
+                <tr>                       
+                    <td>posX</td>
+                    <td>Udává X souřadnici postavy</td>
+                    <td>location</td>
+                </tr>
+                <tr>                       
+                    <td>posY</td>
+                    <td>Udává Y souřadnici postavy</td>
+                    <td>location</td>
+                </tr>
+            </table>
+        </article>
+      </section>
+      <section id="transformace">
+        <article>
+          <header>
+            <h2>Popis transformace</h2>
+          </header>
+            <p>
+                Transformace pomocí <code>xsl:for-each</code> vybírá příkazem <code>select="element"</code> daný element a prochází všechny nalezené 
+                dané elementy v cyklu. 
+            </p>
+            <p>
+                Pomocí <code>xsl:value-of select="element"</code> získáme danou hodnotu elementu. Pokud chceme získat hodnotu attributu, musíme uvést
+                <code>select="/element/@attribut"</code>.
+            </p>
+            <p>
+                Díky <code>xsl:when</code> jsme schopni podmíněného rozhodování. Testujeme podmínku v
+                <code>xsl:when test="podmínka"</code>.
+                Pokud chceme mít větev "else" dává se <code>xsl:otherwise</code>.
+                Celý tento blok musí být uzavřený v <code>xsl:choose</code>
+            </p>
+        </article>
+      </section>
+      <section id="zaver">
+        <article>
+          <header>
+            <h2>Závěr</h2>
+          </header>
+          <p>Práce na této semestrální práci nebylo nijak pro mne složitá, neboť transformace používám a pracuju s nimi v práci. 
+              Nicméně i tak pro mne byl tento úkol přínosný. Největší sílu v transformací vidím ve vytváření dokumentů jako jsou například PDF.
+          </p>
+        </article>
+      </section>
+    </main>
+    <footer>
+    <p>Autor: <strong>Jan Jiroušek</strong> | Česká Zemědělská univerzita Praha, dne 24.4.2017</p>
+    </footer>
+    </div>
+  </body>
+</html>
